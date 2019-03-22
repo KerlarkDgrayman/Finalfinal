@@ -55,7 +55,7 @@ public class MyAnimation extends JFrame implements KeyListener{
 
 	public static void main(String args[]){
 		MyAnimation gameFrame = new MyAnimation();
-		String filepath = "FOFAW.wav";
+		String filepath = "bgmusic.wav";
 		Sound musicObject = new Sound();
 		musicObject.playMusic(filepath);
 		gameFrame.setSize(500, 500);
