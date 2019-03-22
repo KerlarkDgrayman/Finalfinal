@@ -29,12 +29,11 @@ public class Draw extends JComponent{
 	public BufferedImage backg;
 	public BufferedImage slime;
 	public BufferedImage attack;
-	public BufferedImage reverse;
 	
-	public URL resource = getClass().getResource("run0.png");
+	public URL resource = getClass().getResource("fairy-0.png");
 	public URL resource2 = getClass().getResource("fairy0.png");
 	public URL resource3 = getClass().getResource("idle0.png");
-	public URL resource4 = getClass().getResource("ABG.jpg");
+	public URL resource4 = getClass().getResource("background.jpg");
 	public URL resource5 = getClass().getResource("run10.png");
 	public URL resource6 = getClass().getResource("GB.png");
 	public URL resource7 = getClass().getResource("BB.png");
@@ -51,10 +50,9 @@ public class Draw extends JComponent{
 		try{
 			
 			image = ImageIO.read(resource);
-			attack = ImageIO.read(resource2);
 			slime = ImageIO.read(resource3);
 			backg = ImageIO.read(resource4);
-			reverse = ImageIO.read(resource5);
+			attack = ImageIO.read(resource5);
 			hud = ImageIO.read(resource6);
 			hudM = ImageIO.read(resource7);
 			
@@ -105,7 +103,7 @@ public class Draw extends JComponent{
 								resource = getClass().getResource("fairy-0.png");
 							}
 							else{
-								resource5 = getClass().getResource("fairy"+ctr+".png");
+								resource5 = getClass().getResource("attack"+ctr+".png");
 							}
 
 							try{
@@ -131,6 +129,43 @@ public class Draw extends JComponent{
 		});
 		thread1.start();
 	}
+	public void attackAnimation1(){
+		Thread thread2 = new Thread(new Runnable(){
+			public void run(){
+				for(int ctr = 4; ctr < 8; ctr++){
+					try {
+						if(ctr==7){
+							resource = getClass().getResource("fairy-0.png");
+						}
+						else{
+							resource5 = getClass().getResource("attack"+ctr+".png");
+						}
+						
+						try{
+							image = ImageIO.read(resource);
+						}
+						catch(IOException e){
+							e.printStackTrace();
+						}
+				        repaint();
+				        Thread.sleep(100);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+				}
+
+
+				for(int x=0; x<monster.length; x++){
+					if(monster[x]!=null){
+						if(monster[x].contact){
+							monster[x].life = monster[x].life - 10;
+						}
+					}
+				}
+			}
+		});
+		thread2.start();
+	}
 	public void reloadImage(){
 		if(state==0){
 			resource = getClass().getResource("fairy-0.png");
@@ -141,19 +176,19 @@ public class Draw extends JComponent{
 		else if(state==2){
 			resource = getClass().getResource("fairy-2.png");
 		}
-		else if(state==1){
+		else if(state==3){
 			resource = getClass().getResource("fairy-3.png");
 		}
-		else if(state==1){
+		else if(state==4){
 			resource = getClass().getResource("fairy-4.png");
 		}
-		else if(state==1){
+		else if(state==5){
 			resource = getClass().getResource("fairy-5.png");
 		}
-		else if(state==1){
+		else if(state==6){
 			resource = getClass().getResource("fairy-6.png");
 		}
-		else if(state==1){
+		else if(state==7){
 			resource = getClass().getResource("fairy-7.png");
 			state = 0;
 		}
@@ -167,33 +202,27 @@ public class Draw extends JComponent{
 	}	
 	public void reloadImage2(){	
 		if(state == 0){
-			resource2 = getClass().getResource("fairy-0.png");
+			resource5 = getClass().getResource("run10.png");
 		}
 		else if(state == 1){
-			resource2 = getClass().getResource("fairy-1.png");
+			resource5 = getClass().getResource("run11.png");
 		}
 		else if(state == 2){
-			resource2 = getClass().getResource("fairy-2.png");
+			resource5 = getClass().getResource("run12.png");
 		}
 		else if(state == 3){
-			resource2 = getClass().getResource("fairy-3.png");
+			resource5 = getClass().getResource("run13.png");
 		}
 		else if(state == 4){
-			resource2 = getClass().getResource("fairy-4.png");
+			resource5 = getClass().getResource("run14.png");
 		}
 		else if(state == 5){
-			resource2 = getClass().getResource("fairy-5.png");
-		}
-		else if(state == 6){
-			resource2 = getClass().getResource("fairy-6.png");
-		}
-		else if(state == 7){
-			resource2 = getClass().getResource("fairy-7.png");
+			resource5 = getClass().getResource("run15.png");
 			state = 0;
 		}
 		state++;	
 		try{
-			image = ImageIO.read(resource2);
+			attack = ImageIO.read(resource5);
 		}
 		catch(IOException e){
 			e.printStackTrace();
@@ -201,33 +230,33 @@ public class Draw extends JComponent{
 	}
 	public void reloadImage3(){
 		if(state==0){
-			resource5 = getClass().getResource("fairy0.png");
+			resource = getClass().getResource("fairy0.png");
 		}
 		else if(state==1){
-			resource5 = getClass().getResource("fairy1.png");
+			resource = getClass().getResource("fairy1.png");
 		}
 		else if(state==2){
-			resource5 = getClass().getResource("fairy2.png");
+			resource = getClass().getResource("fairy2.png");
 		}
-		else if(state==1){
-			resource5 = getClass().getResource("fairy3.png");
+		else if(state==3){
+			resource = getClass().getResource("fairy3.png");
 		}
-		else if(state==1){
-			resource5 = getClass().getResource("fairy4.png");
+		else if(state==4){
+			resource = getClass().getResource("fairy4.png");
 		}
-		else if(state==1){
-			resource5 = getClass().getResource("fairy5.png");
+		else if(state==5){
+			resource = getClass().getResource("fairy5.png");
 		}
-		else if(state==1){
-			resource5 = getClass().getResource("fairy6.png");
+		else if(state==6){
+			resource = getClass().getResource("fairy6.png");
 		}
-		else if(state==1){
-			resource5 = getClass().getResource("fairy7.png");
+		else if(state==7){
+			resource = getClass().getResource("fairy7.png");
 			state = 0;
 		}
 		state++;
 		try{
-			image = ImageIO.read(resource5);
+			image = ImageIO.read(resource);
 		}
 		catch(IOException e){
 			e.printStackTrace();
@@ -235,28 +264,55 @@ public class Draw extends JComponent{
 	}	
 	public void moveUp(){
 		y = y - 5;
+		if(y< 300 && x < 300){
 		reloadImage();
 		repaint();
+		checkCollision();
+		}
+		else if(y < 300 && x > 300 ){
+		reloadImage3();
+		repaint();
+		checkCollision();
+		}
 	}
+
 	public void moveDown(){
 		y = y + 5;
+		
+		if(y < 300 && x > 300){
 		reloadImage();
 		repaint();
-	}
-	public void moveRight(){
-		x = x + 5;
-		reloadImage();
+		checkCollision();
+		}
+		else if(y > 300 && x > 300 ){
+		reloadImage3();
 		repaint();
+		checkCollision();
+		}
 	}
+
 	public void moveLeft(){
 		x = x - 5;
 		reloadImage3();
 		repaint();
+		checkCollision();
 	}
-	public void attack(){
-		attackAnimation();
-		reloadImage2();
+
+	public void moveRight(){
+		x = x + 5;
+		reloadImage();
 		repaint();
+		checkCollision();
+	}
+
+	public void attack(){
+
+		if(y > 320 && x < 320 ){
+			attackAnimation();
+		}
+		else if(y< 320 && x< 320 ){
+			attackAnimation1();
+		}
 	}
 	public void checkCollision(){
 		int xChecker = x + width;
