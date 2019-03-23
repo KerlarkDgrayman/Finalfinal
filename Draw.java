@@ -1,6 +1,7 @@
 import java.util.Random;
 import javax.swing.JComponent;
 import java.awt.Graphics;
+import java.awt.Dimension;
 import java.awt.Color;
 import java.awt.Canvas;
 import java.lang.IllegalArgumentException;
@@ -41,7 +42,7 @@ public class Draw extends JComponent{
 	public Random randomizer;
 	public int enemyC;
 
-	Monster[] monster = new Monster[10];
+	Monster[] monster = new Monster[50];
 
 	public Draw(){
 		randomizer = new Random();
@@ -69,7 +70,7 @@ public class Draw extends JComponent{
 	public void Startgame(){
 		Thread gameThread = new Thread(new Runnable(){
 			public void run(){
-				while(true){
+			while(true){
 					try{
 						for(int c = 0; c < monster.length; c++){
 							if(monster[c]!=null){
@@ -359,8 +360,10 @@ public class Draw extends JComponent{
 		super.paintComponent(g);
 		g.drawImage(backg, 0, 0, this);
 		g.drawImage(image, x, y, this);
-		g.drawImage(hud, -6, -30, this);
-		g.drawImage(hudM, -6, -10, this);
+		g.setColor(Color.blue);
+    	g.fillRect(0, 414, 500, 50);
+		g.drawImage(hud, 0, 380, this);
+		g.drawImage(hudM, 0, 400, this);
 
 
 		for(int c = 0; c < monster.length; c++){

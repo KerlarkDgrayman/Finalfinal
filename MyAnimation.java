@@ -3,9 +3,11 @@ import java.lang.IllegalArgumentException;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+
 public class MyAnimation extends JFrame implements KeyListener{
 
 	Draw drawing;
+	Createfile g;
 
 	public MyAnimation(){
 		this.drawing = new Draw();
@@ -57,8 +59,12 @@ public class MyAnimation extends JFrame implements KeyListener{
 		MyAnimation gameFrame = new MyAnimation();
 		String filepath = "bgmusic.wav";
 		Sound musicObject = new Sound();
+		Createfile g = new Createfile();
+		g.openFile();
+		g.addRecords();
+		g.closeFile();
 		musicObject.playMusic(filepath);
-		gameFrame.setSize(500, 500);
+		gameFrame.setSize(500, 490);
 		gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		gameFrame.setVisible(true);
 		gameFrame.getContentPane().add(gameFrame.drawing);
