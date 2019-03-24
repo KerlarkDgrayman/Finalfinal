@@ -31,11 +31,12 @@ public class Draw extends JComponent{
 	public BufferedImage slime;
 	public BufferedImage attack;
 	
-	public URL resource = getClass().getResource("fairy-0.png");
-	public URL resource2 = getClass().getResource("fairy0.png");
+	public URL resource = getClass().getResource("sol0.png");
+	public URL resource2 = getClass().getResource("sol-0.png");
 	public URL resource3 = getClass().getResource("idle0.png");
 	public URL resource4 = getClass().getResource("background.jpg");
-	public URL resource5 = getClass().getResource("run10.png");
+	public URL resource5 = getClass().getResource("solattack0.png");
+	public URL resource8 = getClass().getResource("solattack-0.png");
 	public URL resource6 = getClass().getResource("GB.png");
 	public URL resource7 = getClass().getResource("BB.png");
 
@@ -90,7 +91,7 @@ public class Draw extends JComponent{
 		gameThread.start();
 	}
 	public void spawnEnemy(){
-		if(enemyC < 10){
+		if(enemyC < 50){
 			monster[enemyC] = new Monster(randomizer.nextInt(500), randomizer.nextInt(500));
 			enemyC++;
 		}
@@ -101,10 +102,10 @@ public class Draw extends JComponent{
 					for (int ctr = 0; ctr < 5; ctr++){
 						try{
 							if(ctr == 4){
-								resource = getClass().getResource("fairy-0.png");
+								resource = getClass().getResource("sol0.png");
 							}
 							else{
-								resource5 = getClass().getResource("attack"+ctr+".png");
+								resource5 = getClass().getResource("solattack"+ctr+".png");
 							}
 
 							try{
@@ -123,6 +124,7 @@ public class Draw extends JComponent{
 						if(monster[x]!=null){
 							if(monster[x].contact){
 								monster[x].life = monster[x].life - 10;
+								spawnEnemy();
 							}
 						}
 					}
@@ -136,14 +138,14 @@ public class Draw extends JComponent{
 				for(int ctr = 4; ctr < 8; ctr++){
 					try {
 						if(ctr==7){
-							resource = getClass().getResource("fairy-0.png");
+							resource2 = getClass().getResource("sol-0.png");
 						}
 						else{
-							resource5 = getClass().getResource("attack"+ctr+".png");
+							resource8 = getClass().getResource("solattack-"+ctr+".png");
 						}
 						
 						try{
-							image = ImageIO.read(resource);
+							image = ImageIO.read(resource8);
 						}
 						catch(IOException e){
 							e.printStackTrace();
@@ -169,28 +171,34 @@ public class Draw extends JComponent{
 	}
 	public void reloadImage(){
 		if(state==0){
-			resource = getClass().getResource("fairy-0.png");
+			resource = getClass().getResource("sol0.png");
 		}
 		else if(state==1){
-			resource = getClass().getResource("fairy-1.png");
+			resource = getClass().getResource("sol1.png");
 		}
 		else if(state==2){
-			resource = getClass().getResource("fairy-2.png");
+			resource = getClass().getResource("sol2.png");
 		}
 		else if(state==3){
-			resource = getClass().getResource("fairy-3.png");
+			resource = getClass().getResource("sol3.png");
 		}
 		else if(state==4){
-			resource = getClass().getResource("fairy-4.png");
+			resource = getClass().getResource("sol4.png");
 		}
 		else if(state==5){
-			resource = getClass().getResource("fairy-5.png");
+			resource = getClass().getResource("sol5.png");
 		}
 		else if(state==6){
-			resource = getClass().getResource("fairy-6.png");
+			resource = getClass().getResource("sol6.png");
 		}
 		else if(state==7){
-			resource = getClass().getResource("fairy-7.png");
+			resource = getClass().getResource("sol7.png");
+		}
+		else if(state==8){
+			resource = getClass().getResource("sol8.png");
+		}
+		else if(state==9){
+			resource = getClass().getResource("sol9.png");
 			state = 0;
 		}
 		state++;
@@ -203,22 +211,25 @@ public class Draw extends JComponent{
 	}	
 	public void reloadImage2(){	
 		if(state == 0){
-			resource5 = getClass().getResource("run10.png");
+			resource5 = getClass().getResource("solattack0.png");
 		}
 		else if(state == 1){
-			resource5 = getClass().getResource("run11.png");
+			resource5 = getClass().getResource("solattack1.png");
 		}
 		else if(state == 2){
-			resource5 = getClass().getResource("run12.png");
+			resource5 = getClass().getResource("solattack2.png");
 		}
 		else if(state == 3){
-			resource5 = getClass().getResource("run13.png");
+			resource5 = getClass().getResource("solattack3.png");
 		}
 		else if(state == 4){
-			resource5 = getClass().getResource("run14.png");
+			resource5 = getClass().getResource("solattack4.png");
 		}
 		else if(state == 5){
-			resource5 = getClass().getResource("run15.png");
+			resource5 = getClass().getResource("solattack5.png");
+		}
+		else if(state == 6){
+			resource5 = getClass().getResource("solattack6.png");
 			state = 0;
 		}
 		state++;	
@@ -231,33 +242,70 @@ public class Draw extends JComponent{
 	}
 	public void reloadImage3(){
 		if(state==0){
-			resource = getClass().getResource("fairy0.png");
+			resource2 = getClass().getResource("sol-0.png");
 		}
 		else if(state==1){
-			resource = getClass().getResource("fairy1.png");
+			resource2 = getClass().getResource("sol-1.png");
 		}
 		else if(state==2){
-			resource = getClass().getResource("fairy2.png");
+			resource2 = getClass().getResource("sol-2.png");
 		}
 		else if(state==3){
-			resource = getClass().getResource("fairy3.png");
+			resource2 = getClass().getResource("sol-3.png");
 		}
 		else if(state==4){
-			resource = getClass().getResource("fairy4.png");
+			resource2 = getClass().getResource("sol-4.png");
 		}
 		else if(state==5){
-			resource = getClass().getResource("fairy5.png");
+			resource2 = getClass().getResource("sol-5.png");
 		}
 		else if(state==6){
-			resource = getClass().getResource("fairy6.png");
+			resource2 = getClass().getResource("sol-6.png");
 		}
 		else if(state==7){
-			resource = getClass().getResource("fairy7.png");
+			resource2 = getClass().getResource("sol-7.png");
+		}
+		else if(state==8){
+			resource2 = getClass().getResource("sol-8.png");
+		}
+		else if(state==9){
+			resource2 = getClass().getResource("sol-9.png");
 			state = 0;
 		}
 		state++;
 		try{
-			image = ImageIO.read(resource);
+			image = ImageIO.read(resource2);
+		}
+		catch(IOException e){
+			e.printStackTrace();
+		}
+	}
+	public void reloadImage4(){	
+		if(state == 0){
+			resource8 = getClass().getResource("solattack-0.png");
+		}
+		else if(state == 1){
+			resource8 = getClass().getResource("solattack-1.png");
+		}
+		else if(state == 2){
+			resource8 = getClass().getResource("solattack-2.png");
+		}
+		else if(state == 3){
+			resource8 = getClass().getResource("solattack-3.png");
+		}
+		else if(state == 4){
+			resource8 = getClass().getResource("solattack-4.png");
+		}
+		else if(state == 5){
+			resource8 = getClass().getResource("solattack-5.png");
+		}
+		else if(state == 6){
+			resource8 = getClass().getResource("solattack-6.png");
+			state = 0;
+		}
+		state++;	
+		try{
+			attack = ImageIO.read(resource8);
 		}
 		catch(IOException e){
 			e.printStackTrace();
@@ -310,9 +358,15 @@ public class Draw extends JComponent{
 
 		if(y > 320 && x < 320 ){
 			attackAnimation();
+			repaint();
+			reloadImage2();
+			
 		}
 		else if(y< 320 && x< 320 ){
 			attackAnimation1();
+			repaint();
+			reloadImage4();
+			
 		}
 	}
 	public void checkCollision(){

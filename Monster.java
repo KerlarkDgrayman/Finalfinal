@@ -109,7 +109,6 @@ public class Monster{
 					for(int ctr = 0; ctr < 4; ctr++){
 						try {					
 							resource = getClass().getResource("die"+ctr+".png");
-							drawing.spawnEnemy();
 							try{
 								image = ImageIO.read(resource);
 							}

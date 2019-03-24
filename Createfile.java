@@ -2,7 +2,7 @@ import java.io.*;
 import java.lang.*;
 import java.util.*;
 
-public class Createfile{
+public class Createfile extends MyAnimation{
 	
 	private Formatter x;
 

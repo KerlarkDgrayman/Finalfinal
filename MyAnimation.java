@@ -7,7 +7,6 @@ import java.awt.event.KeyListener;
 public class MyAnimation extends JFrame implements KeyListener{
 
 	Draw drawing;
-	Createfile g;
 
 	public MyAnimation(){
 		this.drawing = new Draw();
@@ -57,7 +56,7 @@ public class MyAnimation extends JFrame implements KeyListener{
 
 	public static void main(String args[]){
 		MyAnimation gameFrame = new MyAnimation();
-		String filepath = "bgmusic.wav";
+		String filepath = "TFLT.wav";
 		Sound musicObject = new Sound();
 		Createfile g = new Createfile();
 		g.openFile();
