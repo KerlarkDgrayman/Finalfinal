@@ -26,6 +26,7 @@ public class Draw extends JComponent{
 
 	public BufferedImage hud;
 	public BufferedImage hudM;
+	public BufferedImage hudK;
 	public BufferedImage image;
 	public BufferedImage backg;
 	public BufferedImage slime;
@@ -35,15 +36,14 @@ public class Draw extends JComponent{
 	public URL resource2 = getClass().getResource("sol-0.png");
 	public URL resource3 = getClass().getResource("idle0.png");
 	public URL resource4 = getClass().getResource("background.jpg");
-	public URL resource5 = getClass().getResource("solattack0.png");
-	public URL resource8 = getClass().getResource("solattack-0.png");
+	public URL resource5 = getClass().getResource("Kill.png");
 	public URL resource6 = getClass().getResource("GB.png");
 	public URL resource7 = getClass().getResource("BB.png");
 
 	public Random randomizer;
 	public int enemyC;
 
-	Monster[] monster = new Monster[50];
+	Monster[] monster = new Monster[100];
 
 	public Draw(){
 		randomizer = new Random();
@@ -54,7 +54,7 @@ public class Draw extends JComponent{
 			image = ImageIO.read(resource);
 			slime = ImageIO.read(resource3);
 			backg = ImageIO.read(resource4);
-			attack = ImageIO.read(resource5);
+			hudK = ImageIO.read(resource5);
 			hud = ImageIO.read(resource6);
 			hudM = ImageIO.read(resource7);
 			
@@ -91,7 +91,7 @@ public class Draw extends JComponent{
 		gameThread.start();
 	}
 	public void spawnEnemy(){
-		if(enemyC < 50){
+		if(enemyC < 100){
 			monster[enemyC] = new Monster(randomizer.nextInt(500), randomizer.nextInt(500));
 			enemyC++;
 		}
@@ -105,7 +105,7 @@ public class Draw extends JComponent{
 								resource = getClass().getResource("sol0.png");
 							}
 							else{
-								resource5 = getClass().getResource("solattack"+ctr+".png");
+								resource = getClass().getResource("solattack"+ctr+".png");
 							}
 
 							try{
@@ -138,14 +138,14 @@ public class Draw extends JComponent{
 				for(int ctr = 4; ctr < 8; ctr++){
 					try {
 						if(ctr==7){
-							resource2 = getClass().getResource("sol-0.png");
+							resource = getClass().getResource("sols0.png");
 						}
 						else{
-							resource8 = getClass().getResource("solattack-"+ctr+".png");
+							resource = getClass().getResource("solattacks"+ctr+".png");
 						}
 						
 						try{
-							image = ImageIO.read(resource8);
+							image = ImageIO.read(resource);
 						}
 						catch(IOException e){
 							e.printStackTrace();
@@ -162,6 +162,7 @@ public class Draw extends JComponent{
 					if(monster[x]!=null){
 						if(monster[x].contact){
 							monster[x].life = monster[x].life - 10;
+							spawnEnemy();
 						}
 					}
 				}
@@ -209,117 +210,55 @@ public class Draw extends JComponent{
 			e.printStackTrace();
 		}
 	}	
-	public void reloadImage2(){	
-		if(state == 0){
-			resource5 = getClass().getResource("solattack0.png");
-		}
-		else if(state == 1){
-			resource5 = getClass().getResource("solattack1.png");
-		}
-		else if(state == 2){
-			resource5 = getClass().getResource("solattack2.png");
-		}
-		else if(state == 3){
-			resource5 = getClass().getResource("solattack3.png");
-		}
-		else if(state == 4){
-			resource5 = getClass().getResource("solattack4.png");
-		}
-		else if(state == 5){
-			resource5 = getClass().getResource("solattack5.png");
-		}
-		else if(state == 6){
-			resource5 = getClass().getResource("solattack6.png");
-			state = 0;
-		}
-		state++;	
-		try{
-			attack = ImageIO.read(resource5);
-		}
-		catch(IOException e){
-			e.printStackTrace();
-		}
-	}
-	public void reloadImage3(){
+	public void reloadImage2(){
 		if(state==0){
-			resource2 = getClass().getResource("sol-0.png");
+			resource = getClass().getResource("sols0.png");
 		}
 		else if(state==1){
-			resource2 = getClass().getResource("sol-1.png");
+			resource = getClass().getResource("sols1.png");
 		}
 		else if(state==2){
-			resource2 = getClass().getResource("sol-2.png");
+			resource = getClass().getResource("sols2.png");
 		}
 		else if(state==3){
-			resource2 = getClass().getResource("sol-3.png");
+			resource = getClass().getResource("sols3.png");
 		}
 		else if(state==4){
-			resource2 = getClass().getResource("sol-4.png");
+			resource = getClass().getResource("sols4.png");
 		}
 		else if(state==5){
-			resource2 = getClass().getResource("sol-5.png");
+			resource = getClass().getResource("sols5.png");
 		}
 		else if(state==6){
-			resource2 = getClass().getResource("sol-6.png");
+			resource = getClass().getResource("sols6.png");
 		}
 		else if(state==7){
-			resource2 = getClass().getResource("sol-7.png");
+			resource = getClass().getResource("sols7.png");
 		}
 		else if(state==8){
-			resource2 = getClass().getResource("sol-8.png");
+			resource = getClass().getResource("sols8.png");
 		}
 		else if(state==9){
-			resource2 = getClass().getResource("sol-9.png");
+			resource = getClass().getResource("sols9.png");
 			state = 0;
 		}
 		state++;
 		try{
-			image = ImageIO.read(resource2);
+			image = ImageIO.read(resource);
 		}
 		catch(IOException e){
 			e.printStackTrace();
 		}
 	}
-	public void reloadImage4(){	
-		if(state == 0){
-			resource8 = getClass().getResource("solattack-0.png");
-		}
-		else if(state == 1){
-			resource8 = getClass().getResource("solattack-1.png");
-		}
-		else if(state == 2){
-			resource8 = getClass().getResource("solattack-2.png");
-		}
-		else if(state == 3){
-			resource8 = getClass().getResource("solattack-3.png");
-		}
-		else if(state == 4){
-			resource8 = getClass().getResource("solattack-4.png");
-		}
-		else if(state == 5){
-			resource8 = getClass().getResource("solattack-5.png");
-		}
-		else if(state == 6){
-			resource8 = getClass().getResource("solattack-6.png");
-			state = 0;
-		}
-		state++;	
-		try{
-			attack = ImageIO.read(resource8);
-		}
-		catch(IOException e){
-			e.printStackTrace();
-		}
-	}	
 	public void moveUp(){
 		y = y - 5;
-		if(y< 300 && x < 300){
+		if(y > 300 && x > 300){
 		reloadImage();
 		repaint();
 		checkCollision();
 		}
-		else if(y < 300 && x > 300 ){
-		reloadImage3();
+		else if(y > 300 && x > 300 ){
+		reloadImage2();
 		repaint();
 		checkCollision();
 		}
@@ -334,7 +273,7 @@ public class Draw extends JComponent{
 		checkCollision();
 		}
 		else if(y > 300 && x > 300 ){
-		reloadImage3();
+		reloadImage2();
 		repaint();
 		checkCollision();
 		}
@@ -342,7 +281,7 @@ public class Draw extends JComponent{
 
 	public void moveLeft(){
 		x = x - 5;
-		reloadImage3();
+		reloadImage2();
 		repaint();
 		checkCollision();
 	}
@@ -356,16 +295,16 @@ public class Draw extends JComponent{
 
 	public void attack(){
 
-		if(y > 320 && x < 320 ){
+		if(y < 500 && x > 490 ){
+			attackAnimation1();
+			repaint();
+			reloadImage();
+			
+		}
+		else if(y < 500 && x < 490 ){
 			attackAnimation();
 			repaint();
 			reloadImage2();
-			
-		}
-		else if(y< 320 && x< 320 ){
-			attackAnimation1();
-			repaint();
-			reloadImage4();
 			
 		}
 	}
@@ -416,6 +355,9 @@ public class Draw extends JComponent{
 		g.drawImage(image, x, y, this);
 		g.setColor(Color.blue);
     	g.fillRect(0, 414, 500, 50);
+    	g.setColor(Color. green);
+    	g.fillRect(240, 420, 170, 30);
+    	g.drawImage(hudK, 250, 425, this);
 		g.drawImage(hud, 0, 380, this);
 		g.drawImage(hudM, 0, 400, this);
 

@@ -29,10 +29,10 @@ public class Monster{
 			e.printStackTrace();
 		}
 
-		
+		animate(comp);
 	}
 
-	public Monster(int xPass, int yPass){
+	public Monster(int xPass, int yPass, Draw comp){
 		xPos = xPass;
 		yPos = yPass;
 
@@ -46,7 +46,7 @@ public class Monster{
 		height = image.getHeight();
 		width = image.getWidth();
 
-		
+		animate(comp);
 	}
 
 	public void animate(final Draw compPass){
@@ -78,6 +78,9 @@ public class Monster{
 
 					if(life<=0){
 						die(compPass);
+						idle = false;
+						alive = false;
+						contact = false;
 					}
 				}
 			}

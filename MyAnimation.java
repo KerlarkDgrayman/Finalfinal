@@ -21,6 +21,14 @@ public class MyAnimation extends JFrame implements KeyListener{
 			drawing.moveRight();
 			drawing.moveUp();
 		}
+		if(e.getKeyCode() == KeyEvent.VK_LEFT && e.getKeyCode() == KeyEvent.VK_DOWN){
+			drawing.moveLeft();
+			drawing.moveDown();
+		}
+		else if(e.getKeyCode() == KeyEvent.VK_LEFT && e.getKeyCode() == KeyEvent.VK_UP){
+			drawing.moveLeft();
+			drawing.moveUp();
+		}
 		else if(e.getKeyCode() == KeyEvent.VK_UP){
 			drawing.moveUp();
 			System.out.println("pos: " + drawing.x + ", " + drawing.y);
