@@ -27,19 +27,20 @@ public class Draw extends JComponent{
 	public BufferedImage hud;
 	public BufferedImage hudM;
 	public BufferedImage hudK;
+	public BufferedImage border;
 	public BufferedImage image;
 	public BufferedImage backg;
 	public BufferedImage slime;
 	public BufferedImage attack;
 	
 	public URL resource = getClass().getResource("sol0.png");
-	public URL resource2 = getClass().getResource("sol-0.png");
+	public URL resource2 = getClass().getResource("sols0.png");
 	public URL resource3 = getClass().getResource("idle0.png");
 	public URL resource4 = getClass().getResource("background.jpg");
 	public URL resource5 = getClass().getResource("Kill.png");
 	public URL resource6 = getClass().getResource("GB.png");
 	public URL resource7 = getClass().getResource("BB.png");
-
+	public URL resource8 = getClass().getResource("border2.png");
 	public Random randomizer;
 	public int enemyC;
 
@@ -57,6 +58,7 @@ public class Draw extends JComponent{
 			hudK = ImageIO.read(resource5);
 			hud = ImageIO.read(resource6);
 			hudM = ImageIO.read(resource7);
+			border = ImageIO.read(resource8);
 			
 		}
 		catch(IOException e){
@@ -138,10 +140,10 @@ public class Draw extends JComponent{
 				for(int ctr = 4; ctr < 8; ctr++){
 					try {
 						if(ctr==7){
-							resource = getClass().getResource("sols0.png");
+							resource2 = getClass().getResource("sols0.png");
 						}
 						else{
-							resource = getClass().getResource("solattacks"+ctr+".png");
+							resource2 = getClass().getResource("solattacks"+ctr+".png");
 						}
 						
 						try{
@@ -156,13 +158,11 @@ public class Draw extends JComponent{
 						e.printStackTrace();
 					}
 				}
-
-
 				for(int x=0; x<monster.length; x++){
 					if(monster[x]!=null){
 						if(monster[x].contact){
-							monster[x].life = monster[x].life - 10;
-							spawnEnemy();
+							monster[x].life = monster[x].life - 10;	
+							spawnEnemy();					
 						}
 					}
 				}
@@ -252,12 +252,12 @@ public class Draw extends JComponent{
 	}
 	public void moveUp(){
 		y = y - 5;
-		if(y > 300 && x > 300){
+		if(y > 0 && x > 0){
 		reloadImage();
 		repaint();
 		checkCollision();
 		}
-		else if(y > 300 && x > 300 ){
+		else if(y > 0 && x > 0 ){
 		reloadImage2();
 		repaint();
 		checkCollision();
@@ -267,12 +267,12 @@ public class Draw extends JComponent{
 	public void moveDown(){
 		y = y + 5;
 		
-		if(y < 300 && x > 300){
+		if(y < 0 && x > 0){
 		reloadImage();
 		repaint();
 		checkCollision();
 		}
-		else if(y > 300 && x > 300 ){
+		else if(y > 0 && x > 0 ){
 		reloadImage2();
 		repaint();
 		checkCollision();
@@ -295,14 +295,14 @@ public class Draw extends JComponent{
 
 	public void attack(){
 
-		if(y < 500 && x > 490 ){
-			attackAnimation1();
+		if(y > 0 && x > 0 ){
+			attackAnimation();
 			repaint();
 			reloadImage();
 			
 		}
-		else if(y < 500 && x < 490 ){
-			attackAnimation();
+		else if(y > 0 && x > 0 ){
+			attackAnimation1();
 			repaint();
 			reloadImage2();
 			
@@ -353,6 +353,7 @@ public class Draw extends JComponent{
 		super.paintComponent(g);
 		g.drawImage(backg, 0, 0, this);
 		g.drawImage(image, x, y, this);
+		g.drawImage(border, 0, 0, this);
 		g.setColor(Color.blue);
     	g.fillRect(0, 414, 500, 50);
     	g.setColor(Color. green);

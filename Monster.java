@@ -19,7 +19,7 @@ public class Monster{
 	public boolean contact = false;
 
 	public BufferedImage image;
-	public URL resource = getClass().getResource("idle0.png");
+	public URL resource = getClass().getResource("slime/idle0.png");
 
 	public Monster(Draw comp){
 		try{
@@ -29,10 +29,10 @@ public class Monster{
 			e.printStackTrace();
 		}
 
-		animate(comp);
+		
 	}
 
-	public Monster(int xPass, int yPass, Draw comp){
+	public Monster(int xPass, int yPass){
 		xPos = xPass;
 		yPos = yPass;
 
@@ -46,20 +46,20 @@ public class Monster{
 		height = image.getHeight();
 		width = image.getWidth();
 
-		animate(comp);
+		
 	}
 
 	public void animate(final Draw compPass){
 		Thread monThread = new Thread(new Runnable(){
 			public void run(){
-				while(idle){
+				while(alive){
 					for(int ctr = 0; ctr < 5; ctr++){
 						try {
 							if(ctr==4){
-								resource = getClass().getResource("idle0.png");
+								resource = getClass().getResource("slime/idle0.png");
 							}
 							else{
-								resource = getClass().getResource("idle"+ctr+".png");
+								resource = getClass().getResource("slime/idle"+ctr+".png");
 							}
 							
 							try{
@@ -106,12 +106,15 @@ public class Monster{
 
 	public void die(final Draw compPass){
 		idle = false;
+		alive = false;
+		contact = false;
 		if(alive){
 			Thread monThread = new Thread(new Runnable(){
 				public void run(){
 					for(int ctr = 0; ctr < 4; ctr++){
 						try {					
-							resource = getClass().getResource("die"+ctr+".png");
+							resource = getClass().getResource("slime/die"+ctr+".png");
+							
 							try{
 								image = ImageIO.read(resource);
 							}
@@ -128,6 +131,11 @@ public class Monster{
 			});
 			monThread.start();
 		}
-		alive = false;
+		else{
+			alive = false;
+			contact = false;
+			idle = false;	
+		}
+
 	}
 }

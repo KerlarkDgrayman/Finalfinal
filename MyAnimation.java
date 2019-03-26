@@ -1,7 +1,10 @@
 import javax.swing.JFrame;
 import java.lang.IllegalArgumentException;
 import java.awt.event.KeyEvent;
+import java.awt.Component;
 import java.awt.event.KeyListener;
+import javax.imageio.ImageIO;
+import java.io.IOException;
 
 
 public class MyAnimation extends JFrame implements KeyListener{
@@ -9,6 +12,7 @@ public class MyAnimation extends JFrame implements KeyListener{
 	Draw drawing;
 
 	public MyAnimation(){
+
 		this.drawing = new Draw();
 	}
 
@@ -16,18 +20,22 @@ public class MyAnimation extends JFrame implements KeyListener{
 		if(e.getKeyCode() == KeyEvent.VK_RIGHT && e.getKeyCode() == KeyEvent.VK_DOWN){
 			drawing.moveRight();
 			drawing.moveDown();
+			System.out.println("pos: " + drawing.x + ", " + drawing.y);
 		}
 		else if(e.getKeyCode() == KeyEvent.VK_RIGHT && e.getKeyCode() == KeyEvent.VK_UP){
 			drawing.moveRight();
 			drawing.moveUp();
+			System.out.println("pos: " + drawing.x + ", " + drawing.y);
 		}
-		if(e.getKeyCode() == KeyEvent.VK_LEFT && e.getKeyCode() == KeyEvent.VK_DOWN){
+		else if(e.getKeyCode() == KeyEvent.VK_LEFT && e.getKeyCode() == KeyEvent.VK_DOWN){
 			drawing.moveLeft();
 			drawing.moveDown();
+			System.out.println("pos: " + drawing.x + ", " + drawing.y);
 		}
 		else if(e.getKeyCode() == KeyEvent.VK_LEFT && e.getKeyCode() == KeyEvent.VK_UP){
 			drawing.moveLeft();
 			drawing.moveUp();
+			System.out.println("pos: " + drawing.x + ", " + drawing.y);
 		}
 		else if(e.getKeyCode() == KeyEvent.VK_UP){
 			drawing.moveUp();
@@ -64,14 +72,14 @@ public class MyAnimation extends JFrame implements KeyListener{
 
 	public static void main(String args[]){
 		MyAnimation gameFrame = new MyAnimation();
-		String filepath = "TFLT.wav";
-		Sound musicObject = new Sound();
 		Createfile g = new Createfile();
 		g.openFile();
 		g.addRecords();
 		g.closeFile();
+		String filepath = "TFLT.wav";
+		Sound musicObject = new Sound();
 		musicObject.playMusic(filepath);
-		gameFrame.setSize(500, 490);
+		gameFrame.setSize(500, 500);
 		gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		gameFrame.setVisible(true);
 		gameFrame.getContentPane().add(gameFrame.drawing);
